@@ -29,6 +29,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Copy PRD static files
+        run: cp public/prd-data.js dist/ && cp public/prd-inject.js dist/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
