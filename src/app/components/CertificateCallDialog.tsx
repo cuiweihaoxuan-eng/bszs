@@ -153,39 +153,37 @@ export default function CertificateCallDialog({
       title: "人员",
       items: [
         // 项目经理
-        { 
-          id: 1, 
-          type: "项目经理", 
-          requirement: "", 
-          completed: false, 
-          originalText: "", 
-          score: 10,
+        {
+          id: 1,
+          type: "项目经理",
+          completed: false,
+          originalText: "本项目拟派驻的项目经理具备PMP资格认证，或具备高级信息系统项目管理师证书，满足得1分，否则得0分。",
+          score: 1,
           subItems: [
-            { id: '1-1', type: '学历', name: "本科", matchStatus: "matched" as const, score: 2, originalText: "项目经理需具备本科及以上学历" },
-            { id: '1-2', type: '身份证', name: "身份证", matchStatus: "matched" as const, score: 0, originalText: "项目经理需提供身份证复印件" },
-            { id: '1-3', type: '劳动合同', name: "劳动合同", matchStatus: "matched" as const, score: 0, originalText: "项目经理需提供与投标单位签订的劳动合同" },
-            { id: '1-4', type: '社保证明', name: "社保证明", matchStatus: "unmatched" as const, score: 0, originalText: "需提供投标截止日前连续六个月的社保缴纳证明" },
-            { id: '1-5', type: '履历表', name: "履历表", matchStatus: "matched" as const, score: 0, originalText: "项目经理需提供详细履历表" },
-            { id: '1-6', type: '资质证书', name: "系统架构师", matchStatus: "matched" as const, score: 5, originalText: "项目经理需具备系统架构师证书" },
-            { id: '1-7', type: '资质证书', name: "PMP", matchStatus: "unmatched" as const, score: 3, originalText: "项目经理需具备PMP证书" },
+            { id: '1-1', type: '学历', name: "本科", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '1-2', type: '身份证', name: "身份证", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '1-3', type: '劳动合同', name: "劳动合同", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '1-4', type: '社保证明', name: "社保证明", matchStatus: "unmatched" as const, score: 0, originalText: "" },
+            { id: '1-5', type: '履历表', name: "履历表", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '1-6', type: '资质证书', name: "系统架构师", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '1-7', type: '资质证书', name: "PMP", matchStatus: "unmatched" as const, score: 0, originalText: "" },
           ]
         },
         // 研发人员
-        { 
-          id: 2, 
-          type: "研发人员", 
-          requirement: "", 
-          completed: false, 
-          originalText: "", 
-          score: 15,
+        {
+          id: 2,
+          type: "研发人员",
+          completed: false,
+          originalText: "项目团队研发人员均具备5年以上（含5年）客情分析、商机管理、用户管理、销售管理、项目管理、电子信息工程、软件开发类相关项目经验，满足得1分，否则不得分。",
+          score: 1,
           subItems: [
-            { id: '2-1', type: '学历', name: "本科（5人）", matchStatus: "matched" as const, score: 3, originalText: "研发人员需具备本科及以上学历，至少5人" },
-            { id: '2-2', type: '身份证', name: "身份证（5人）", matchStatus: "matched" as const, score: 0, originalText: "所有研发人员需提供身份证复印件" },
-            { id: '2-3', type: '劳动合同', name: "劳动合同（5人）", matchStatus: "matched" as const, score: 0, originalText: "研发人员需提供与投标单位签订的劳动合同" },
-            { id: '2-4', type: '社保证明', name: "社保证明（5人）", matchStatus: "unmatched" as const, score: 0, originalText: "需提供投标截止日前连续六个月的社保缴纳证明" },
-            { id: '2-5', type: '履历表', name: "履历表（5人）", matchStatus: "matched" as const, score: 0, originalText: "所有研发人员需提供详细履历表" },
-            { id: '2-6', type: '资质证书', name: "信息系统项目管理师（2人）", matchStatus: "matched" as const, score: 6, originalText: "研发团队需包含2名信息系统项目管理师" },
-            { id: '2-7', type: '资质证书', name: "软件设计师（3人）", matchStatus: "unmatched" as const, score: 6, originalText: "研发团队需包含3名软件设计师" },
+            { id: '2-1', type: '学历', name: "本科（5人）", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '2-2', type: '身份证', name: "身份证（5人）", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '2-3', type: '劳动合同', name: "劳动合同（5人）", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '2-4', type: '社保证明', name: "社保证明（5人）", matchStatus: "unmatched" as const, score: 0, originalText: "" },
+            { id: '2-5', type: '履历表', name: "履历表（5人）", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '2-6', type: '资质证书', name: "信息系统项目管理师（2人）", matchStatus: "matched" as const, score: 0, originalText: "" },
+            { id: '2-7', type: '资质证书', name: "软件设计师（3人）", matchStatus: "unmatched" as const, score: 0, originalText: "" },
           ]
         },
       ],
@@ -992,30 +990,10 @@ export default function CertificateCallDialog({
                         )}
                       </td>
                       <td className="px-4 py-3 text-sm font-medium" style={{ color: PRIMARY_COLOR }}>
-                        {item.subItems ? (
-                          <div className="space-y-1.5">
-                            {item.subItems.map((subItem: any) => (
-                              <div key={subItem.id} className="h-6 flex items-center">
-                                {subItem.score > 0 ? subItem.score : '-'}
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          item.score > 0 ? item.score : '-'
-                        )}
+                        {item.score > 0 ? item.score : '-'}
                       </td>
                       <td className="px-4 py-3 text-sm text-gray-500 italic">
-                        {item.subItems ? (
-                          <div className="space-y-1.5">
-                            {item.subItems.map((subItem: any) => (
-                              <div key={subItem.id} className="h-6 flex items-center">
-                                {subItem.originalText}
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          item.originalText
-                        )}
+                        {item.originalText}
                       </td>
                     </tr>
                   ))}
