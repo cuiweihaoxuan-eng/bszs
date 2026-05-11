@@ -945,17 +945,12 @@ export default function CertificateCallDialog({
                           {!item.subItems && (
                             <>
                               {item.matchStatus === "matched" ? (
-                                <span className="px-2 py-0.5 rounded text-xs bg-green-100 text-green-700 whitespace-nowrap flex-shrink-0">
-                                  已匹配
-                                </span>
+                                <CircleCheck className="w-4 h-4 text-green-600 flex-shrink-0" />
                               ) : (
-                                <span
-                                  className="px-2 py-0.5 rounded text-xs bg-red-100 text-red-700 cursor-pointer hover:bg-red-200 flex items-center gap-1 whitespace-nowrap flex-shrink-0"
+                                <Circle
+                                  className="w-4 h-4 text-red-500 cursor-pointer hover:text-red-600 flex-shrink-0"
                                   onClick={() => openBindDialog(item, key)}
-                                >
-                                  <Link className="w-3 h-3" />
-                                  未匹配
-                                </span>
+                                />
                               )}
                             </>
                           )}
