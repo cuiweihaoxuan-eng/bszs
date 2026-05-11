@@ -4,53 +4,59 @@ import CertificateCallDialog from "./CertificateCallDialog";
 
 interface BidRecord {
   id: string;
+  code: string;
   name: string;
-  projectName: string;
-  bidDate: string;
+  manager: string;
+  createTime: string;
+  creator: string;
   status: string;
-  amount: string;
 }
 
 const mockData: BidRecord[] = [
   {
     id: "1",
+    code: "BS-2026-001",
     name: "某市智慧城市建设项目",
-    projectName: "智慧城市一期",
-    bidDate: "2026-03-15",
+    manager: "张三",
+    createTime: "2026-03-15",
+    creator: "李四",
     status: "进行中",
-    amount: "5000万",
   },
   {
     id: "2",
+    code: "BS-2026-002",
     name: "政务系统升级改造项目",
-    projectName: "政务云平台",
-    bidDate: "2026-03-10",
+    manager: "王五",
+    createTime: "2026-03-10",
+    creator: "李四",
     status: "待提交",
-    amount: "3200万",
   },
   {
     id: "3",
+    code: "BS-2026-003",
     name: "教育信息化建设项目",
-    projectName: "智慧校园",
-    bidDate: "2026-03-08",
+    manager: "赵六",
+    createTime: "2026-03-08",
+    creator: "李四",
     status: "进行中",
-    amount: "2800万",
   },
   {
     id: "4",
+    code: "BS-2026-004",
     name: "医疗大数据平台建设",
-    projectName: "健康云",
-    bidDate: "2026-03-05",
+    manager: "钱七",
+    createTime: "2026-03-05",
+    creator: "李四",
     status: "已完成",
-    amount: "4500万",
   },
   {
     id: "5",
+    code: "BS-2026-005",
     name: "交通管理系统项目",
-    projectName: "智慧交通",
-    bidDate: "2026-03-01",
+    manager: "孙八",
+    createTime: "2026-03-01",
+    creator: "李四",
     status: "进行中",
-    amount: "6000万",
   },
 ];
 
@@ -99,25 +105,28 @@ export default function BidManagement() {
         <table className="w-full">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200">
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700 w-16">
                 序号
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
-                标书名称
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                项目编号
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">
                 项目名称
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
-                投标日期
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700 w-24">
+                项目负责人
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700 w-32">
+                创建时间
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700 w-20">
+                创建人
+              </th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700 w-20">
                 状态
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
-                金额
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+              <th className="px-4 py-3 text-left text-sm font-medium text-gray-700 w-24">
                 操作
               </th>
             </tr>
@@ -125,15 +134,15 @@ export default function BidManagement() {
           <tbody>
             {mockData.map((bid, index) => (
               <tr key={bid.id} className="border-b border-gray-100 hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm text-gray-900">{index + 1}</td>
-                <td className="px-6 py-4 text-sm cursor-pointer hover:underline" style={{ color: '#5047E6' }}>
+                <td className="px-4 py-3 text-sm text-gray-900">{index + 1}</td>
+                <td className="px-4 py-3 text-sm text-gray-900">{bid.code}</td>
+                <td className="px-4 py-3 text-sm cursor-pointer hover:underline" style={{ color: '#5047E6' }}>
                   {bid.name}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">
-                  {bid.projectName}
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-900">{bid.bidDate}</td>
-                <td className="px-6 py-4 text-sm">
+                <td className="px-4 py-3 text-sm text-gray-900">{bid.manager}</td>
+                <td className="px-4 py-3 text-sm text-gray-900">{bid.createTime}</td>
+                <td className="px-4 py-3 text-sm text-gray-900">{bid.creator}</td>
+                <td className="px-4 py-3 text-sm">
                   <span
                     className={`px-2 py-1 rounded text-xs ${
                       bid.status === "进行中"
@@ -147,11 +156,10 @@ export default function BidManagement() {
                     {bid.status}
                   </span>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">{bid.amount}</td>
-                <td className="px-6 py-4 text-sm">
+                <td className="px-4 py-3 text-sm">
                   <Button
                     onClick={() => handleCertificateCall(bid)}
-                    className="text-white text-sm px-4 py-1"
+                    className="text-white text-sm px-3 py-1"
                     style={{ backgroundColor: '#5047E6' }}
                   >
                     证书调用
