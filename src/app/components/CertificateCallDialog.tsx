@@ -1,4 +1,4 @@
-import { ChevronRight, ChevronDown, Check, Download, FileText, History, Search, CheckCircle2, Circle, Plus, Minus, Trash2, Link } from "lucide-react";
+import { ChevronRight, ChevronDown, Check, Download, FileText, History, Search, CheckCircle2, Circle, CircleCheck, Plus, Minus, Trash2, Link } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog";
 import { Button } from "./ui/button";
@@ -966,21 +966,16 @@ export default function CertificateCallDialog({
                         {item.subItems ? (
                           <div className="space-y-1.5">
                             {item.subItems.map((subItem: any) => (
-                              <div key={subItem.id} className="flex items-center gap-2 flex-nowrap whitespace-nowrap">
+                              <div key={subItem.id} className="flex items-center gap-2 flex-nowrap">
                                 <span className="whitespace-nowrap text-gray-600">{subItem.type}：</span>
                                 <span className="whitespace-nowrap">{subItem.name}</span>
                                 {subItem.matchStatus === "matched" ? (
-                                  <span className="px-2 py-0.5 rounded text-xs bg-green-100 text-green-700 whitespace-nowrap flex-shrink-0">
-                                    已匹配
-                                  </span>
+                                  <CircleCheck className="w-4 h-4 text-green-600 flex-shrink-0" />
                                 ) : (
-                                  <span
-                                    className="px-2 py-0.5 rounded text-xs bg-red-100 text-red-700 cursor-pointer hover:bg-red-200 flex items-center gap-1 whitespace-nowrap flex-shrink-0"
+                                  <Circle
+                                    className="w-4 h-4 text-red-500 cursor-pointer hover:text-red-600 flex-shrink-0"
                                     onClick={() => openBindDialog(subItem, key, item)}
-                                  >
-                                    <Link className="w-3 h-3" />
-                                    未匹配
-                                  </span>
+                                  />
                                 )}
                               </div>
                             ))}
@@ -2122,10 +2117,10 @@ export default function CertificateCallDialog({
               {/* 人员绑定表单 */}
               {bindingCategory === "personnel" && (
                 <div className="space-y-3">
-                  {/* 枚举类型：学历、身份证、劳动合同、社保证明、履历表 */}
-                  {["学历", "身份证", "劳动合同", "社保证明", "履历表"].includes(bindingItem.type) && (
+                  {/* 文件类型：学历、身份证、劳动合同、社保证明、履历表（资质证书除外） */}
+                  {!["资质证书"].includes(bindingItem.type) && (
                     <>
-                      <h4 className="text-sm font-medium text-gray-700">选择{bindingItem.type}</h4>
+                      <h4 className="text-sm font-medium text-gray-700">选择文件类型</h4>
                       <Select
                         value={bindFormData.certificateType}
                         onValueChange={(value) =>
@@ -2133,33 +2128,21 @@ export default function CertificateCallDialog({
                         }
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder={`请选择${bindingItem.type}`} />
+                          <SelectValue placeholder="请选择文件类型" />
                         </SelectTrigger>
                         <SelectContent>
-                          {bindingItem.type === "学历" && (
-                            <>
-                              <SelectItem value="学历">学历</SelectItem>
-                            </>
-                          )}
-                          {bindingItem.type === "身份证" && (
-                            <SelectItem value="身份证">身份证</SelectItem>
-                          )}
-                          {bindingItem.type === "劳动合同" && (
-                            <SelectItem value="劳动合同">劳动合同</SelectItem>
-                          )}
-                          {bindingItem.type === "社保证明" && (
-                            <SelectItem value="社保证明">社保证明</SelectItem>
-                          )}
-                          {bindingItem.type === "履历表" && (
-                            <SelectItem value="履历表">履历表</SelectItem>
-                          )}
+                          <SelectItem value="学历证明">学历证明</SelectItem>
+                          <SelectItem value="身份证">身份证</SelectItem>
+                          <SelectItem value="劳动合同">劳动合同</SelectItem>
+                          <SelectItem value="社保证明">社保证明</SelectItem>
+                          <SelectItem value="履历表">履历表</SelectItem>
                         </SelectContent>
                       </Select>
                     </>
                   )}
-                  
-                  {/* 资质证书类型 - 支持多选 */}
-                  {((bindFormData as any).isSubItem || bindingItem.type === "资质证书") && (
+
+                  {/* 资质证书类型 - 支持多选（仅资质证书显示） */}
+                  {bindingItem.type === "资质证书" && (
                     <>
                       <h4 className="text-sm font-medium text-gray-700">绑定证书类型（可多选）</h4>
                       <div className="border border-gray-200 rounded-lg p-3 space-y-2 max-h-60 overflow-y-auto">
@@ -2170,7 +2153,7 @@ export default function CertificateCallDialog({
                               checked={(bindFormData.certificateType || "").split(",").includes(cert)}
                               onCheckedChange={(checked) => {
                                 const currentTypes = bindFormData.certificateType ? bindFormData.certificateType.split(",").filter(t => t) : [];
-                                const newTypes = checked 
+                                const newTypes = checked
                                   ? [...currentTypes, cert]
                                   : currentTypes.filter(t => t !== cert);
                                 setBindFormData({ ...bindFormData, certificateType: newTypes.join(",") });
